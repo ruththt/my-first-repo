@@ -1,1 +1,367 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <title>Ethio Community Fix</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#edf2f4;
+        }
+
+        /* Navbar */
+
+        .navbar{
+            background:#1d3557;
+            color:white;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 30px;
+        }
+
+        .navbar button{
+            padding:10px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        /* Hero */
+
+        .hero{
+            background:#457b9d;
+            color:white;
+            text-align:center;
+            padding:60px 20px;
+        }
+
+        .hero h1{
+            font-size:45px;
+        }
+
+        /* Form */
+
+        .form-section{
+            background:white;
+            width:80%;
+            margin:30px auto;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0px 2px 10px gray;
+        }
+
+        .form-section input,
+        .form-section select,
+        .form-section textarea{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            margin-bottom:20px;
+        }
+
+        .form-section button{
+            background:#1d3557;
+            color:white;
+            padding:12px;
+            border:none;
+            width:100%;
+            cursor:pointer;
+            border-radius:5px;
+        }
+
+        /* Reports */
+
+        .reports{
+            width:80%;
+            margin:auto;
+        }
+
+        .report-card{
+            background:white;
+            padding:20px;
+            margin-top:20px;
+            border-radius:10px;
+            box-shadow:0px 2px 8px gray;
+        }
+
+        .status{
+            font-weight:bold;
+            margin-top:10px;
+        }
+
+        .working{
+            color:orange;
+        }
+
+        .fixed{
+            color:green;
+        }
+
+        /* Buttons */
+
+        .trackbtn,
+        .reviewbtn{
+            padding:10px;
+            margin-top:10px;
+            border:none;
+            cursor:pointer;
+            border-radius:5px;
+        }
+
+        .trackbtn{
+            background:#ffb703;
+        }
+
+        .reviewbtn{
+            background:#2a9d8f;
+            color:white;
+        }
+
+        /* Provider Section */
+
+        .providers{
+            width:80%;
+            margin:40px auto;
+        }
+
+        .provider-card{
+            background:white;
+            padding:20px;
+            margin-top:20px;
+            border-radius:10px;
+            box-shadow:0px 2px 8px gray;
+        }
+
+        /* Reviews */
+
+        .review{
+            background:#f1f1f1;
+            padding:10px;
+            margin-top:10px;
+            border-radius:5px;
+        }
+
+        /* Dark Mode */
+
+        .dark{
+            background:#121212;
+            color:white;
+        }
+
+        .dark .form-section,
+        .dark .report-card,
+        .dark .provider-card{
+            background:#1e1e1e;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <div class="navbar">
+
+        <h2>Ethio Community Fix</h2>
+
+        <button id="darkbtn">Dark Mode</button>
+
+    </div>
+
+    <!-- Hero -->
+
+    <div class="hero">
+
+        <h1>Report Community Problems</h1>
+
+        <p>
+            Report water, electricity and infrastructure problems
+            in your area and track repair progress.
+        </p>
+
+    </div>
+
+    <!-- Report Form -->
+
+    <div class="form-section">
+
+        <h2>Report a Problem</h2>
+
+        <input type="text" id="place"
+        placeholder="Enter area">
+
+        <select id="problem">
+
+            <option>Electricity</option>
+
+            <option>Water</option>
+
+            <option>Road Damage</option>
+
+            <option>Infrastructure</option>
+
+        </select>
+
+        <textarea id="description"
+        placeholder="Describe the problem"></textarea>
+
+        <button id="reportbtn">Submit Report</button>
+
+    </div>
+
+    <!-- Reports -->
+
+    <div class="reports">
+
+        <h2>Community Reports</h2>
+
+        <div id="reportlist"></div>
+
+    </div>
+
+    <!-- Providers -->
+
+    <div class="providers">
+
+        <h2>Nearby Service Providers</h2>
+
+        <div class="provider-card">
+
+            <h3>⚡ Ethiopian Electric Utility</h3>
+
+            <p>Location: Bole</p>
+
+            <p>Phone: 905</p>
+
+            <button class="reviewbtn">Rate Service</button>
+
+            <div class="review">
+
+                ⭐⭐⭐⭐ "Workers arrived quickly"
+
+            </div>
+
+        </div>
+
+        <div class="provider-card">
+
+            <h3>💧 Addis Water Office</h3>
+
+            <p>Location: Piassa</p>
+
+            <p>Phone: 939</p>
+
+            <button class="reviewbtn">Rate Service</button>
+
+            <div class="review">
+
+                ⭐⭐⭐ "Problem solved after 2 days"
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // Dark Mode
+
+        let darkbtn =
+        document.getElementById("darkbtn");
+
+        darkbtn.onclick = function(){
+
+            document.body.classList.toggle("dark");
+
+        };
+
+        // Report System
+
+        let reportbtn =
+        document.getElementById("reportbtn");
+
+        let reportlist =
+        document.getElementById("reportlist");
+
+        reportbtn.onclick = function(){
+
+            let place =
+            document.getElementById("place").value;
+
+            let problem =
+            document.getElementById("problem").value;
+
+            let description =
+            document.getElementById("description").value;
+
+            if(place == "" || description == ""){
+
+                alert("Please fill all fields");
+
+            }
+
+            else{
+
+                let card =
+                document.createElement("div");
+
+                card.classList.add("report-card");
+
+                card.innerHTML =
+
+                "<h3>" + problem + " Problem</h3>" +
+
+                "<p><b>Area:</b> " + place + "</p>" +
+
+                "<p><b>Description:</b> " + description + "</p>" +
+
+                "<p class='status working'>Status: Workers Coming</p>" +
+
+                "<button class='trackbtn'>Mark as Fixed</button>";
+
+                reportlist.prepend(card);
+
+                // button inside card
+
+                let trackbtn =
+                card.querySelector(".trackbtn");
+
+                let status =
+                card.querySelector(".status");
+
+                trackbtn.onclick = function(){
+
+                    status.innerHTML =
+                    "Status: Fixed Successfully";
+
+                    status.classList.remove("working");
+
+                    status.classList.add("fixed");
+
+                    trackbtn.innerHTML =
+                    "Completed";
+
+                };
+
+                // clear inputs
+
+                document.getElementById("place").value = "";
+
+                document.getElementById("description").value = "";
+
+            }
+
+        };
+
+    </script>
+
+</body>
+
+</html>
